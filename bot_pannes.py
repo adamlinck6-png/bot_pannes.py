@@ -82,11 +82,15 @@ def lancer_serveur_web():
     print(f"🌍 Serveur web actif sur le port {port}")
     server.serve_forever()
 
-   if __name__ == "__main__":
+    if __name__ == "__main__":
     # 1. On lance le serveur web en arrière-plan pour Render
     t = Thread(target=lancer_serveur_web)
     t.daemon = True
     t.start()
     
-    # 2. On lance la boucle du bot au premier plan pour qu'elle s'exécute direct !
+    # 2. On lance la boucle du bot au premier plan
     boucle_du_bot()
+    
+    # 3. Sécurité absolue pour empêcher Render de couper le script
+    while True:
+        time.sleep(3600)
