@@ -19,9 +19,9 @@ def envoyer_message_telegram(texte):
         print(f"Erreur envoi Telegram : {e}")
 
 # --- DÉTECTEUR DE PANNES ---
-def verifier_pannes():
+   def verifier_pannes():
     alertes = []
-    
+
     # 1. Check Discord
     try:
         url_discord = "https://discordstatus.com/api/v2/summary.json"
@@ -42,7 +42,25 @@ def verifier_pannes():
                     alertes.append("🔴 **YouTube rencontre des perturbations mondiales !**")
     except:
         print("Impossible de joindre le statut de YouTube")
-        
+
+    # 3. Check des autres réseaux (Instagram, Twitter/X, Twitch)
+    autres_sites = {
+        "Instagram": "https://www.instagram.com",
+        "Twitter/X": "https://twitter.com",
+        "Twitch": "https://www.twitch.tv"
+    }
+
+    for nom_site, url in autres_sites.items():
+        try:
+            # On tente de charger la page d'accueil principale
+            reponse = requests.get(url, timeout=5)
+            # Si le site répond avec un code d'erreur (ex: 500, 503, 404)
+            if reponse.status_code >= 400:
+                alertes.append(f"⚠️ **{nom_site} semble rencontrer un problème !** (Code erreur : {reponse.status_code})")
+        except requests.exceptions.RequestException:
+            # Si le site ne répond pas du tout (gros crash réseau)
+            alertes.append(f"🚨 **Alerte Critique : {nom_site} est totalement inaccessible (Crash réseau) !**")
+
     return alertes
 
 # --- BOUCLE PRINCIPALE ---
