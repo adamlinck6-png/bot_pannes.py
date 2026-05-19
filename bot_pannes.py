@@ -83,11 +83,9 @@ def lancer_serveur_web():
     server.serve_forever()
 
    if __name__ == "__main__":
-    t = Thread(target=lancer_serveur_web)
+     # Lancement du serveur web sur le thread principal
+    t = Thread(target=boucle_du_bot)
     t.daemon = True
     t.start()
     
-    boucle_du_bot()
-    
-    while True:
-        time.sleep(3600)
+    lancer_serveur_web()
