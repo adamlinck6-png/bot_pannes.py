@@ -82,10 +82,11 @@ def lancer_serveur_web():
     print(f"🌍 Serveur web actif sur le port {port}")
     server.serve_forever()
 
-if __name__ == "__main__":
-    # Lancement du serveur web sur le thread principal
-    t = Thread(target=boucle_du_bot)
+   if __name__ == "__main__":
+    # 1. On lance le serveur web en arrière-plan pour Render
+    t = Thread(target=lancer_serveur_web)
     t.daemon = True
     t.start()
     
-    lancer_serveur_web()
+    # 2. On lance la boucle du bot au premier plan pour qu'elle s'exécute direct !
+    boucle_du_bot()
