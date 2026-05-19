@@ -10,9 +10,11 @@ CHAT_ID = "7518104464"            # Ton ID personnel
 
 def envoyer_message_telegram(texte):
     url = f"https://api.telegram.org/bot{TOKEN_TELEGRAM}/sendMessage"
+    # Correction ici : clés en minuscules, et la variable CHAT_ID sans guillemets
     payload = {"chat_id": CHAT_ID, "text": texte, "parse_mode": "Markdown"}
     try:
-        requests.post(url, json=payload, timeout=5)
+        response = requests.post(url, json=payload, timeout=5)
+        print(f"Réponse Telegram : {response.status_code} - {response.text}")
     except Exception as e:
         print(f"Erreur envoi Telegram : {e}")
 
