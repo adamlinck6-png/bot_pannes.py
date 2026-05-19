@@ -82,8 +82,8 @@ def lancer_serveur_web():
     print(f"🌍 Serveur web actif sur le port {port}")
     server.serve_forever()
 
-   if __name__ == "__main__":
-     # Lancement du serveur web sur le thread principal
+if __name__ == "__main__":
+    # Lancement du serveur web sur le thread principal
     t = Thread(target=boucle_du_bot)
     t.daemon = True
     t.start()
