@@ -5,7 +5,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
 
 # --- CONFIGURATION (Identique à ton premier bot) ---
-TOKEN_TELEGRAM = "TON_TOKEN_ICI"  # Remets le token de ton bot Telegram
+TOKEN_TELEGRAM = "8775180472:AAFqnrb-F7N69pz88xqV8OsELj1xN4Rs8oA"  # Remets le token de ton bot Telegram
 CHAT_ID = "7518104464"            # Ton ID personnel
 
 def envoyer_message_telegram(texte):
